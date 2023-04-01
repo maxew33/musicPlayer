@@ -1,8 +1,15 @@
+import { media } from "./data/media.js"
+import { getRndNumber } from "./utils/functions.js"
+
 const cards = [...document.querySelectorAll('.card')],
     library = document.querySelector('.disc-library'),
     arrows = [...document.querySelectorAll('.arrow')],
     player = [...document.querySelectorAll('[aria-hidden]')],
-    exitPlayer = document.querySelector('.exit')
+    exitPlayer = document.querySelector('.exit'),
+    playlist = document.querySelector('.playlist'),
+    mediaInfos = [],
+    soundtracks = [],
+    audio = new Audio
 
 let angle = 0,
     chgtCard = 0,
@@ -10,7 +17,12 @@ let angle = 0,
     prevX,
     prevY,
     timeElapsed = 50,
-    genreSelected
+    genreSelected,
+    genreWrapper,
+    play = false,
+    trackIndex = 0,
+    random = false
+
 
 window.onload = animateCards()
 
@@ -38,7 +50,6 @@ function animateCards() {
     })
 }
 
-
 function changeCard(direction) {
     // direction : -1 => left / 1 => right
 
@@ -62,11 +73,8 @@ function changeCard(direction) {
                 card.dataset.pos = 1
                 canChange = true
             }, 500)
-
         }
     })
-
-
 }
 
 
@@ -86,7 +94,6 @@ library.addEventListener('wheel', e => {
 
 // -B- change cards with touches
 library.addEventListener('touchstart', (e) => {
-
     prevX = e.touches[0].clientX
     prevY = e.touches[0].clientY
 })
@@ -109,28 +116,114 @@ library.addEventListener('touchmove', (e) => {
     }
 })
 
-
 // -C- change cards with arrows
 arrows.forEach(arrow => arrow.addEventListener('click', e => canChange && changeCard(parseInt(e.target.dataset.dir))))
 
 
-
 // Part II - select an album
-
 cards.forEach(card => card.addEventListener('click', e => {
-    genreSelected = e.target
     // cards.forEach(card => card !== genreSelected && (card.style.opacity = "0"))
     console.log('click on', e.target.dataset.genre)
     // aria selected = true
-    genreSelected = e.target
-    genreSelected.setAttribute('aria-selected', true)
+    genreWrapper = e.target
+    genreSelected = e.target.dataset.genre
+
+    mediaInfos.length = 0
+    mediaInfos.push(...media[genreSelected])
+
+    playlist.innerHTML = ''
+
+    mediaInfos.forEach((media, idx) => {
+        playlist.innerHTML += `
+        <div class="soundtrack" aria-selected="false">
+        <div>
+        ${idx + 1} 
+        </div>
+        artist: ${media.artist}
+        <div>
+        </div>
+        title: ${media.title}
+        <div>
+        </div>
+        <div>
+        `
+    })
+
+    soundtracks.length = 0
+    soundtracks.push(...Array.from(document.querySelectorAll('.soundtrack')))
+
+    soundtracks.forEach((track, idx) => track.addEventListener('click', () => {
+        trackIndex = idx
+        playMusik()
+    }))
+
+    genreWrapper.setAttribute('aria-selected', true)
     player.forEach(elt => elt.setAttribute("aria-hidden", false))
+    setTimeout(() => { playMusik() }, 500)
 }))
 
 exitPlayer.addEventListener('click', () => {
     setTimeout(() => {
-        genreSelected.setAttribute('aria-selected', false)
+        genreWrapper.setAttribute('aria-selected', false)
     }, 500)
 
     player.forEach(elt => elt.setAttribute("aria-hidden", true))
+
+    stopMusik()
 })
+
+
+//Part III Music player
+const playBtn = document.querySelector('.play'),
+    changeTrackBtn = Array.from(document.querySelectorAll('.change-track')),
+    pauseBtn = document.querySelector('.pause'),
+    stopBtn = document.querySelector('.stop'),
+    randomBtn = document.querySelector('.random')
+
+playBtn.addEventListener('click', !play && playMusik)
+pauseBtn.addEventListener('click', pauseMusik)
+stopBtn.addEventListener('click', stopMusik)
+
+randomBtn.addEventListener('click', () => random = !random)
+
+changeTrackBtn.forEach(btn => btn.addEventListener('click', e => changeTrack(+e.target.dataset.value)))
+
+function playMusik() {
+    soundtracks.forEach(track => track.setAttribute('aria-selected', false))
+    soundtracks[trackIndex].setAttribute('aria-selected', true)
+
+    audio.src = `../assets/music/${genreSelected}/${mediaInfos[trackIndex].title}-${mediaInfos[trackIndex].artist}.mp3`
+    audio.play()
+}
+
+function pauseMusik() {
+    pause ? audio.pause() : audio.play()
+    pause = !pause
+}
+
+function stopMusik() {
+    audio.pause()
+    audio.currentTime = 0
+    trackIndex = 0
+}
+
+function changeTrack(value) {
+    if (random) {
+        pickNextRndTrack()
+    }
+    else {
+        trackIndex += value
+        trackIndex < 0 && (trackIndex = mediaInfos.length - 1)
+        trackIndex === mediaInfos.length && (trackIndex = 0)
+    }
+    playMusik()
+}
+
+audio.addEventListener('ended', () => changeTrack(1))
+
+function pickNextRndTrack() {
+    let rndTrack
+    do { rndTrack = getRndNumber(mediaInfos.length) }
+    while (rndTrack === trackIndex)
+    trackIndex = rndTrack
+}

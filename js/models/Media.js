@@ -8,11 +8,7 @@ export default class Media {
         this._likes = data.likes
     }
 
-    get imagePath() {
-        return `./assets/sample-photos/${this._id}/${this._image}`
-    }
-
-    get minImagePath() {
+    get mediaPath() {
         return `./assets/sample-photos/min/${this._id}/${this._image}`
     }
 

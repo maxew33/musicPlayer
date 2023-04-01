@@ -140,6 +140,80 @@ a:visited {
   --text: #ddd;
 }
 
+.player-section {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(34, 34, 34, 0);
+  pointer-events: none;
+  transition: background-color 0.25s linear, -webkit-backdrop-filter 0.25s ease-in;
+  transition: backdrop-filter 0.25s ease-in, background-color 0.25s linear;
+  transition: backdrop-filter 0.25s ease-in, background-color 0.25s linear, -webkit-backdrop-filter 0.25s ease-in;
+  z-index: 7;
+}
+.player-section[aria-hidden=false] {
+  pointer-events: auto;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(34, 34, 34, 0.3333333333);
+}
+
+#player {
+  width: calc(100vw - 10vmin);
+  height: 66vmin;
+  background: #97acee;
+  position: absolute;
+  top: calc(60vh - 30vmin);
+  left: 5vmin;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  transition: 0.25s -webkit-clip-path 0.25s ease-in-out;
+  transition: 0.25s clip-path 0.25s ease-in-out;
+  transition: 0.25s clip-path 0.25s ease-in-out, 0.25s -webkit-clip-path 0.25s ease-in-out;
+  will-change: clip-path;
+  display: flex;
+}
+#player[aria-hidden=false] {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.empty-place {
+  height: 100%;
+  width: 57.2vmin;
+}
+
+.player-visuel {
+  width: calc(100vw - 67.2vmin);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.controllers {
+  width: 100%;
+  height: calc(8.8vmin + 5px);
+  background: blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.controllers > * {
+  cursor: pointer;
+}
+
+.exit {
+  position: absolute;
+  top: 5vmin;
+  right: 5vmin;
+}
+
+.soundtrack[aria-selected=true] {
+  background: red;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -350,48 +424,4 @@ body {
   font-family: caveat;
 }
 
-/* ====== PLAYER ====== */
-.player-section {
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(34, 34, 34, 0);
-  pointer-events: none;
-  transition: background-color 0.25s linear, -webkit-backdrop-filter 0.25s ease-in;
-  transition: backdrop-filter 0.25s ease-in, background-color 0.25s linear;
-  transition: backdrop-filter 0.25s ease-in, background-color 0.25s linear, -webkit-backdrop-filter 0.25s ease-in;
-  z-index: 7;
-}
-.player-section[aria-hidden=false] {
-  pointer-events: auto;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background: rgba(34, 34, 34, 0.3333333333);
-}
-
-#player {
-  width: calc(100vw - 10vmin);
-  height: 66vmin;
-  background: #97acee;
-  position: absolute;
-  top: calc(60vh - 30vmin);
-  left: 5vmin;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  transition: 0.25s -webkit-clip-path 0.25s ease-in-out;
-  transition: 0.25s clip-path 0.25s ease-in-out;
-  transition: 0.25s clip-path 0.25s ease-in-out, 0.25s -webkit-clip-path 0.25s ease-in-out;
-  will-change: clip-path;
-}
-#player[aria-hidden=false] {
-  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-          clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-}
-
-.exit {
-  position: absolute;
-  top: 5vmin;
-  right: 5vmin;
-}/*# sourceMappingURL=style.css.map */
+/* ====== PLAYER ====== *//*# sourceMappingURL=style.css.map */

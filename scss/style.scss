@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-@import './base/reset', './utils/variables';
+@import './base/reset', './utils/variables', './components/player';
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald&display=swap');
 
@@ -203,43 +203,3 @@ body {
 
 /* ====== PLAYER ====== */
 
-.player-section{
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #2220;
-  pointer-events: none;
-  transition: backdrop-filter .25s ease-in, background-color .25s linear;
-  z-index: 7;
-
-  &[aria-hidden="false"]{
-    pointer-events: auto;
-    backdrop-filter: blur(5px);
-    background: #2225;
-  }
-}
-
- #player{
-  width: calc(100vw - 10vmin);
-  height: 66vmin;
-  background: #97acee;
-  position: absolute;
-  top: calc(60vh - 30vmin);
-  left: 5vmin;
-  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  transition: .25s clip-path .25s ease-in-out;
-  will-change: clip-path;
-
-
-  &[aria-hidden="false"]{
-    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-  }
- }
-
- .exit{
-  position: absolute;
-  top: 5vmin;
-  right: 5vmin;
- }

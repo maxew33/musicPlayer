@@ -1,0 +1,71 @@
+.player-section {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #2220;
+    pointer-events: none;
+    transition: backdrop-filter .25s ease-in, background-color .25s linear;
+    z-index: 7;
+
+    &[aria-hidden="false"] {
+        pointer-events: auto;
+        backdrop-filter: blur(5px);
+        background: #2225;
+    }
+}
+
+#player {
+    width: calc(100vw - 10vmin);
+    height: 66vmin;
+    background: #97acee;
+    position: absolute;
+    top: calc(60vh - 30vmin);
+    left: 5vmin;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    transition: .25s clip-path .25s ease-in-out;
+    will-change: clip-path;
+    display: flex;
+
+    &[aria-hidden="false"] {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.empty-place {
+    height: 100%;
+    width: 57.2vmin;
+}
+
+.player-visuel{
+    width: calc(100vw - 67.2vmin);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.controllers {
+    width: 100%;
+    height: calc(8.8vmin + 5px);
+    background: blue;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    >*{
+        cursor: pointer;
+    }
+}
+
+.exit {
+    position: absolute;
+    top: 5vmin;
+    right: 5vmin;
+}
+
+.soundtrack{
+    &[aria-selected="true"]{
+        background: red;
+    }
+}

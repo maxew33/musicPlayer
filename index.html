@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Miouzic</title>
   <link rel="stylesheet" href="./style/style.css">
-  <script src="./js/script.js" defer></script>
+  <script src="./js/script.js" type="module" defer></script>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <h1> Discomaniacs </h1>
   </header>
   <section class="disc-library">
-    
+
     <div class="carousel">
 
       <div class="arrow" data-dir="-1">
@@ -29,7 +29,7 @@
         <img src="https://picsum.photos/400" alt="Lorem Picsum" class="illustration">
         <p class="name">
           <a href="https://picsum.photos">
-            Lorem Picsum
+            Jazz
           </a>
         </p>
       </div>
@@ -37,7 +37,7 @@
         <img src="https://via.placeholder.com/400" alt="place holder" class="illustration">
         <p class="name">
           <a href="https://via.placeholder.com">
-            place holder
+            pop
           </a>
         </p>
       </div>
@@ -45,7 +45,7 @@
         <img src="https://www.placecage.com/400/400" alt="place Cage" class="illustration">
         <p class="name">
           <a href="https://www.placecage.com">
-            place Cage
+            R'n'B
           </a>
         </p>
       </div>
@@ -53,7 +53,7 @@
         <img src="https://placekitten.com/400/400" alt="place Kitten" class="illustration">
         <p class="name">
           <a href="https://placekitten.com">
-            Place Kitten
+            Reggae
           </a>
         </p>
       </div>
@@ -61,7 +61,7 @@
         <img src="https://baconmockup.com/400/400" alt="baconmockup" class="illustration">
         <p class="name">
           <a href="https://baconmockup.com">
-            baconmockup
+            Rock
           </a>
         </p>
       </div>
@@ -69,7 +69,7 @@
         <img src="https://placebeard.it/400x400" alt="place beard" class="illustration">
         <p class="name">
           <a href="https://placebeard.it">
-            place beard
+            Country
           </a>
         </p>
       </div>
@@ -77,7 +77,7 @@
         <img src="http://placeimg.com/400/400/arch/grayscale" alt="place img" class="illustration">
         <p class="name">
           <a href="http://placeimg.com">
-            Place img
+            Classic
           </a>
         </p>
       </div>
@@ -85,15 +85,28 @@
         <img src="https://www.fillmurray.com/400/400" alt="fill Murray" class="illustration">
         <p class="name">
           <a href="https://www.fillmurray.com">
-            fill Murray
+            Punk
           </a>
         </p>
       </div>
     </div>
   </section>
   <section class="player-section" aria-hidden="true">
-    <div id="player" class="player-obj" aria-hidden="true">
 
+    <div id="player" aria-hidden="true">
+      <div class="empty-place"></div>
+      <div class="player-visuel">
+        <div class="playlist"></div>
+        <div class="controllers">
+          <div class="play">▶</div>
+          <div class="pause">❙❙</div>
+          <div class="next change-track" data-value="1">▶❙</div>
+          <div class="prev change-track" data-value="-1">❙◀</div>
+          <div class="stop">■</div>
+          <div class="volume"></div>
+          <div class="random">random</div>
+        </div>
+      </div>
       <button class="exit">X</button>
     </div>
   </section>
