@@ -1,0 +1,245 @@
+@use 'sass:math';
+
+@import './base/reset', './utils/variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+header{
+  position: absolute;
+  z-index: 10;
+}
+
+h1 {
+  font-family: Oswald;
+  font-size: 15vmin;
+  width: 100vw;
+  line-height: 15vmin;
+  text-align: center;
+  padding: 5vmin;
+}
+
+body {
+  color: #eee;
+  overflow: hidden;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at 50vw 10vh, rgb(224, 172, 223), rgb(86, 96, 176));
+}
+
+.carousel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 2rem;
+  right: 7.5vw;
+  cursor: pointer;
+  width: 3.5rem;
+  aspect-ratio: 1/.9;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  background: #eeeeee55;
+
+  &:first-child {
+    left: 7.5vw;
+  }
+
+  &:hover {
+    color: rgb(86, 96, 176);
+    background: #eeeeeedd;
+  }
+}
+
+.card {
+  position: absolute;
+  height: 60vmin;
+  width: 52vmin;
+  transform-origin: bottom;
+  transition: transform 1s ease-in-out;
+  border-radius: 15px;
+  border: 5px solid #0009;
+  background: #eee;
+  cursor: pointer;
+  will-change: transform;
+
+  >*{
+    pointer-events: none;
+  }
+
+  &:not([data-pos='8'] ) {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &[aria-selected='true']{
+    transform: translate(calc(33.6vmin - 50vw), 6vmin) scale(1.1);
+    transition: transform .25s ease-in-out;
+  }
+}
+
+@for $i from 1 through $cards-qty {
+  [data-pos='#{$i}'] {
+    z-index: $i;
+    transform: rotate(math.sin(math.div(math.$pi * $i, 4)) * 10deg);
+  }
+}
+
+.card-from-left {
+  transform: translateX(calc(-50% - 50vw));
+}
+
+.card-from-right {
+  transform: translateX(calc(50% + 50vw));
+}
+
+/* anim for moving cards from front to back */
+
+[data-pos='#{($cards-qty + 1)}'] {
+  z-index: 9;
+  animation: linear .5s forwards running to-the-back;
+}
+
+@keyframes to-the-back {
+
+  25% {
+    opacity: 0.75;
+  }
+
+  40% {
+    transform: translateX(10vw) rotate(30deg);
+    opacity: 0;
+    z-index: 9;
+  }
+
+  60% {
+    transform: translateX(-15vw) rotate(-45deg);
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 0.75;
+    z-index: 1;
+  }
+
+  100% {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+/* anim for moving cards from back to front */
+
+[data-pos='0'] {
+  z-index: 0;
+  animation: linear .5s forwards running to-the-front;
+}
+
+@keyframes to-the-front {
+  25% {
+    opacity: 0.75;
+  }
+
+  40% {
+    transform: translateX(-15vw) rotate(-45deg);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  60% {
+    transform: translateX(10vw) rotate(30deg);
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 0.75;
+    z-index: 9;
+  }
+
+  100% {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+    z-index: 9;
+  }
+}
+
+.illustration {
+  width: 100%;
+  height: auto;
+  transition: transform .25s ease-in-out;
+}
+
+.name {
+  text-align: center;
+  font-size: 5vmin;
+  font-family: caveat;
+}
+
+
+/* ====== PLAYER ====== */
+
+.player-section{
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #2220;
+  pointer-events: none;
+  transition: backdrop-filter .25s ease-in, background-color .25s linear;
+  z-index: 7;
+
+  &[aria-hidden="false"]{
+    pointer-events: auto;
+    backdrop-filter: blur(5px);
+    background: #2225;
+  }
+}
+
+ #player{
+  width: calc(100vw - 10vmin);
+  height: 66vmin;
+  background: #97acee;
+  position: absolute;
+  top: calc(60vh - 30vmin);
+  left: 5vmin;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  transition: .25s clip-path .25s ease-in-out;
+  will-change: clip-path;
+
+
+  &[aria-hidden="false"]{
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+  }
+ }
+
+ .exit{
+  position: absolute;
+  top: 5vmin;
+  right: 5vmin;
+ }

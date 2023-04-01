@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miouzic</title>
+  <link rel="stylesheet" href="./style/style.css">
+  <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1> Discomaniacs </h1>
+  </header>
+  <section class="disc-library">
+    
+    <div class="carousel">
+
+      <div class="arrow" data-dir="-1">
+        ⟻
+      </div>
+      <div class="arrow" data-dir="1">
+        ⟼
+      </div>
+
+      <div class="card card-from-left" data-genre="jazz" data-pos="1" aria-selected="false">
+        <img src="https://picsum.photos/400" alt="Lorem Picsum" class="illustration">
+        <p class="name">
+          <a href="https://picsum.photos">
+            Lorem Picsum
+          </a>
+        </p>
+      </div>
+      <div class="card card-from-right" data-genre="pop" data-pos="2" aria-selected="false">
+        <img src="https://via.placeholder.com/400" alt="place holder" class="illustration">
+        <p class="name">
+          <a href="https://via.placeholder.com">
+            place holder
+          </a>
+        </p>
+      </div>
+      <div class="card card-from-left" data-genre="rnb" data-pos="3" aria-selected="false">
+        <img src="https://www.placecage.com/400/400" alt="place Cage" class="illustration">
+        <p class="name">
+          <a href="https://www.placecage.com">
+            place Cage
+          </a>
+        </p>
+      </div>
+      <div class="card card-from-right" data-genre="reggae" data-pos="4" aria-selected="false">
+        <img src="https://placekitten.com/400/400" alt="place Kitten" class="illustration">
+        <p class="name">
+          <a href="https://placekitten.com">
+            Place Kitten
+          </a>
+        </p>
+      </div>
+      <div class="card card-from-left" data-genre="rock" data-pos="5" aria-selected="false">
+        <img src="https://baconmockup.com/400/400" alt="baconmockup" class="illustration">
+        <p class="name">
+          <a href="https://baconmockup.com">
+            baconmockup
+          </a>
+        </p>
+      </div>
+      <div class="card card-from-right" data-genre="country" data-pos="6" aria-selected="false">
+        <img src="https://placebeard.it/400x400" alt="place beard" class="illustration">
+        <p class="name">
+          <a href="https://placebeard.it">
+            place beard
+          </a>
+        </p>
+      </div>
+      <div class="card card-from-left" data-genre="classic" data-pos="7" aria-selected="false">
+        <img src="http://placeimg.com/400/400/arch/grayscale" alt="place img" class="illustration">
+        <p class="name">
+          <a href="http://placeimg.com">
+            Place img
+          </a>
+        </p>
+      </div>
+      <div class="card card-from-right" data-genre="punk" data-pos="8" aria-selected="false">
+        <img src="https://www.fillmurray.com/400/400" alt="fill Murray" class="illustration">
+        <p class="name">
+          <a href="https://www.fillmurray.com">
+            fill Murray
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="player-section" aria-hidden="true">
+    <div id="player" class="player-obj" aria-hidden="true">
+
+      <button class="exit">X</button>
+    </div>
+  </section>
+</body>
+
+</html>

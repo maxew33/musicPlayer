@@ -1,0 +1,397 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald&display=swap");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+:root {
+  --bg: #222;
+  --text: #ddd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+header {
+  position: absolute;
+  z-index: 10;
+}
+
+h1 {
+  font-family: Oswald;
+  font-size: 15vmin;
+  width: 100vw;
+  line-height: 15vmin;
+  text-align: center;
+  padding: 5vmin;
+}
+
+body {
+  color: #eee;
+  overflow: hidden;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at 50vw 10vh, rgb(224, 172, 223), rgb(86, 96, 176));
+}
+
+.carousel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 2rem;
+  right: 7.5vw;
+  cursor: pointer;
+  width: 3.5rem;
+  aspect-ratio: 1/0.9;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  background: rgba(238, 238, 238, 0.3333333333);
+}
+.arrow:first-child {
+  left: 7.5vw;
+}
+.arrow:hover {
+  color: rgb(86, 96, 176);
+  background: rgba(238, 238, 238, 0.8666666667);
+}
+
+.card {
+  position: absolute;
+  height: 60vmin;
+  width: 52vmin;
+  transform-origin: bottom;
+  transition: transform 1s ease-in-out;
+  border-radius: 15px;
+  border: 5px solid rgba(0, 0, 0, 0.6);
+  background: #eee;
+  cursor: pointer;
+  will-change: transform;
+}
+.card > * {
+  pointer-events: none;
+}
+.card:not([data-pos="8"]) {
+  cursor: default;
+  pointer-events: none;
+}
+.card[aria-selected=true] {
+  transform: translate(calc(33.6vmin - 50vw), 6vmin) scale(1.1);
+  transition: transform 0.25s ease-in-out;
+}
+
+[data-pos="1"] {
+  z-index: 1;
+  transform: rotate(7.0710678119deg);
+}
+
+[data-pos="2"] {
+  z-index: 2;
+  transform: rotate(10deg);
+}
+
+[data-pos="3"] {
+  z-index: 3;
+  transform: rotate(7.0710678119deg);
+}
+
+[data-pos="4"] {
+  z-index: 4;
+  transform: rotate(0deg);
+}
+
+[data-pos="5"] {
+  z-index: 5;
+  transform: rotate(-7.0710678119deg);
+}
+
+[data-pos="6"] {
+  z-index: 6;
+  transform: rotate(-10deg);
+}
+
+[data-pos="7"] {
+  z-index: 7;
+  transform: rotate(-7.0710678119deg);
+}
+
+[data-pos="8"] {
+  z-index: 8;
+  transform: rotate(0deg);
+}
+
+.card-from-left {
+  transform: translateX(calc(-50% - 50vw));
+}
+
+.card-from-right {
+  transform: translateX(calc(50% + 50vw));
+}
+
+/* anim for moving cards from front to back */
+[data-pos="9"] {
+  z-index: 9;
+  animation: linear 0.5s forwards running to-the-back;
+}
+
+@keyframes to-the-back {
+  25% {
+    opacity: 0.75;
+  }
+  40% {
+    transform: translateX(10vw) rotate(30deg);
+    opacity: 0;
+    z-index: 9;
+  }
+  60% {
+    transform: translateX(-15vw) rotate(-45deg);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.75;
+    z-index: 1;
+  }
+  100% {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+    z-index: 1;
+  }
+}
+/* anim for moving cards from back to front */
+[data-pos="0"] {
+  z-index: 0;
+  animation: linear 0.5s forwards running to-the-front;
+}
+
+@keyframes to-the-front {
+  25% {
+    opacity: 0.75;
+  }
+  40% {
+    transform: translateX(-15vw) rotate(-45deg);
+    opacity: 0;
+    z-index: 1;
+  }
+  60% {
+    transform: translateX(10vw) rotate(30deg);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.75;
+    z-index: 9;
+  }
+  100% {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+    z-index: 9;
+  }
+}
+.illustration {
+  width: 100%;
+  height: auto;
+  transition: transform 0.25s ease-in-out;
+}
+
+.name {
+  text-align: center;
+  font-size: 5vmin;
+  font-family: caveat;
+}
+
+/* ====== PLAYER ====== */
+.player-section {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(34, 34, 34, 0);
+  pointer-events: none;
+  transition: background-color 0.25s linear, -webkit-backdrop-filter 0.25s ease-in;
+  transition: backdrop-filter 0.25s ease-in, background-color 0.25s linear;
+  transition: backdrop-filter 0.25s ease-in, background-color 0.25s linear, -webkit-backdrop-filter 0.25s ease-in;
+  z-index: 7;
+}
+.player-section[aria-hidden=false] {
+  pointer-events: auto;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(34, 34, 34, 0.3333333333);
+}
+
+#player {
+  width: calc(100vw - 10vmin);
+  height: 66vmin;
+  background: #97acee;
+  position: absolute;
+  top: calc(60vh - 30vmin);
+  left: 5vmin;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  transition: 0.25s -webkit-clip-path 0.25s ease-in-out;
+  transition: 0.25s clip-path 0.25s ease-in-out;
+  transition: 0.25s clip-path 0.25s ease-in-out, 0.25s -webkit-clip-path 0.25s ease-in-out;
+  will-change: clip-path;
+}
+#player[aria-hidden=false] {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.exit {
+  position: absolute;
+  top: 5vmin;
+  right: 5vmin;
+}/*# sourceMappingURL=style.css.map */
