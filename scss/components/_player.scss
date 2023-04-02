@@ -66,9 +66,9 @@
 }
 
 .controllers {
-    width: 22.5vmin;
-    height: 22.5vmin;
-    padding: 1vmin;
+    width: 13.75rem;
+    height: 13.75rem;
+    padding: .4rem;
     font-size: 1.5rem;
     border-radius: 50%;
     background: radial-gradient(#ddd 0 15%, #0000 15% 55%, #ddd 55% 60%, #0000 0 60%),
@@ -104,10 +104,6 @@
     grid-area: prev;
 }
 
-.change-track > *{
-    // pointer-events: none;
-}
-
 .play-wrapper{
     grid-area: play;
     position: relative;
@@ -131,11 +127,6 @@
     grid-area: vol;
     display: flex;
     gap: 10px;
-    .set-volume{
-        >*{
-            // pointer-events: none;
-        }
-    }
 }
 
 .track-infos{
@@ -144,8 +135,23 @@
     position: absolute;
     bottom: 3vmin;
     left: calc(50% - 45vmin);
+    font-family: Oswald;
 }
 
-.fas{
-    pointer-events: none;
+@media screen and (max-width: 1080px){
+
+
+    .player-section {
+        z-index: 9;
+    }
+    
+    .player {
+        width: 90vmin;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(50vh - 45vmin);
+        &[aria-hidden="false"] {
+            transform: translateX(-50%);
+        }       
+    }
 }

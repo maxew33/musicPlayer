@@ -178,7 +178,7 @@ function playMusik() {
     audio.src = `./assets/music/${genreSelected}/${mediaInfos[trackIndex].path}`
     audio.play()
 
-    trackInfos.innerText = `track ${trackIndex+1} - Artist: ${mediaInfos[trackIndex].artist} - title: ${mediaInfos[trackIndex].title}`
+    trackInfos.innerText = `${trackIndex < 10 && '0'}${trackIndex+1} - ${mediaInfos[trackIndex].artist} - ${mediaInfos[trackIndex].title}`
 
     pause = false
     displayPlayBtn()

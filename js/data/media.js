@@ -173,7 +173,7 @@ export const media = {
         {
             "artist": "Chris Haugen",
             "title": "Si Señorita",
-            "path": "SiSeñorita-ChrisHaugen.mp3"
+            "path": "SiSenorita-ChrisHaugen.mp3"
         },
         {
             "artist": "Cooper Cannell",

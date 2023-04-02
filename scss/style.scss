@@ -1,9 +1,8 @@
 @use 'sass:math';
 
-@import './base/reset', './utils/variables', './components/player';
-
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald&display=swap');
 
+@import './base/reset', './utils/variables', './components/player';
 
 * {
   margin: 0;
@@ -22,7 +21,14 @@ h1 {
   width: 100vw;
   line-height: 15vmin;
   text-align: center;
-  padding: 5vmin;
+  padding: 5vmin;  text-shadow: 1px 1px 0 #111d, 
+  1px -1px 0 #111d, 
+  -1px 1px 0 #111d, 
+  -1px -1px 0 #111d, 
+  1px 0px 0 #111d, 
+  0px 1px 0 #111d, 
+  -1px 0px 0 #111d, 
+  0px -1px 0 #111d;
 }
 
 body {
@@ -33,7 +39,9 @@ body {
 body {
   height: 100vh;
   width: 100vw;
-  background: radial-gradient(circle at 50vw 10vh, rgb(224, 172, 223), rgb(86, 96, 176));
+  background: radial-gradient(circle at center 60vh, #fff5, #fff0),  url("../assets/img/eric-krull-fi3_lDi3qPE-unsplash.jpg");
+  background-size: cover;
+  backdrop-filter: blur(5px);
 }
 
 .carousel {
@@ -205,4 +213,14 @@ body {
   0px 1px 0 #111d, 
   -1px 0px 0 #111d, 
   0px -1px 0 #111d;
+}
+
+@media screen and (max-width: 1080px) {
+  .disc {
+    &[aria-selected='true']{
+      transform: translateY(-10vh) scale(1.7);
+      transform-origin: center;
+    }
+  }
+  
 }

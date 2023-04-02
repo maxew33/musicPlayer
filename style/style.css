@@ -135,6 +135,10 @@ a:visited {
   text-decoration: none;
 }
 
+.fas {
+  pointer-events: none;
+}
+
 :root {
   --bg: #222;
   --text: #ddd;
@@ -183,9 +187,9 @@ a:visited {
 }
 
 .controllers {
-  width: 22.5vmin;
-  height: 22.5vmin;
-  padding: 1vmin;
+  width: 13.75rem;
+  height: 13.75rem;
+  padding: 0.4rem;
   font-size: 1.5rem;
   border-radius: 50%;
   background: radial-gradient(#ddd 0 15%, rgba(0, 0, 0, 0) 15% 55%, #ddd 55% 60%, rgba(0, 0, 0, 0) 0 60%), #e6f3be;
@@ -237,18 +241,30 @@ a:visited {
   display: flex;
   gap: 10px;
 }
+
 .track-infos {
   font-size: 1.5rem;
   width: 57.2vmin;
   position: absolute;
   bottom: 3vmin;
   left: calc(50% - 45vmin);
+  font-family: Oswald;
 }
 
-.fas {
-  pointer-events: none;
+@media screen and (max-width: 1080px) {
+  .player-section {
+    z-index: 9;
+  }
+  .player {
+    width: 90vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(50vh - 45vmin);
+  }
+  .player[aria-hidden=false] {
+    transform: translateX(-50%);
+  }
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -267,6 +283,7 @@ h1 {
   line-height: 15vmin;
   text-align: center;
   padding: 5vmin;
+  text-shadow: 1px 1px 0 rgba(17, 17, 17, 0.8666666667), 1px -1px 0 rgba(17, 17, 17, 0.8666666667), -1px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px -1px 0 rgba(17, 17, 17, 0.8666666667), 1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px -1px 0 rgba(17, 17, 17, 0.8666666667);
 }
 
 body {
@@ -277,7 +294,10 @@ body {
 body {
   height: 100vh;
   width: 100vw;
-  background: radial-gradient(circle at 50vw 10vh, rgb(224, 172, 223), rgb(86, 96, 176));
+  background: radial-gradient(circle at center 60vh, rgba(255, 255, 255, 0.3333333333), rgba(255, 255, 255, 0)), url("../assets/img/eric-krull-fi3_lDi3qPE-unsplash.jpg");
+  background-size: cover;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .carousel {
@@ -457,4 +477,11 @@ body {
   font-family: caveat;
   color: #ccc;
   text-shadow: 1px 1px 0 rgba(17, 17, 17, 0.8666666667), 1px -1px 0 rgba(17, 17, 17, 0.8666666667), -1px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px -1px 0 rgba(17, 17, 17, 0.8666666667), 1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px -1px 0 rgba(17, 17, 17, 0.8666666667);
+}
+
+@media screen and (max-width: 1080px) {
+  .disc[aria-selected=true] {
+    transform: translateY(-10vh) scale(1.7);
+    transform-origin: center;
+  }
 }/*# sourceMappingURL=style.css.map */
