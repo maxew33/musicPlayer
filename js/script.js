@@ -175,7 +175,7 @@ setVolumeBtn.forEach(btn => btn.addEventListener('click', e => setVolume(+e.targ
 
 function playMusik() {
 
-    audio.src = `../assets/music/${genreSelected}/${mediaInfos[trackIndex].path}`
+    audio.src = `./assets/music/${genreSelected}/${mediaInfos[trackIndex].path}`
     audio.play()
 
     trackInfos.innerText = `track ${trackIndex+1} - Artist: ${mediaInfos[trackIndex].artist} - title: ${mediaInfos[trackIndex].title}`
