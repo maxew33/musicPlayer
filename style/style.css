@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Changa+One&family=Caveat:wght@600&family=Oswald&display=swap");
 html,
 body,
 div,
@@ -167,7 +167,7 @@ a:visited {
 .player {
   color: #111;
   width: 57.2vmin;
-  aspect-ratio: 1;
+  height: 57.2vmin;
   background: conic-gradient(from 15deg, rgba(0, 0, 0, 0) 0deg, rgba(153, 153, 153, 0.3333333333) 10deg 45deg, rgba(0, 0, 0, 0) 55deg 185deg, rgba(153, 153, 153, 0.3333333333) 195deg 230deg, rgba(0, 0, 0, 0) 240deg), radial-gradient(circle at center, rgba(0, 0, 0, 0) 0% 30.5%, rgba(102, 102, 102, 0.3333333333) 31.5% 32%, rgba(0, 0, 0, 0) 33% 35.5%, rgba(102, 102, 102, 0.3333333333) 36.5% 37%, rgba(0, 0, 0, 0) 38% 40.5%, rgba(102, 102, 102, 0.3333333333) 41.5% 42%, rgba(0, 0, 0, 0) 43% 45.5%, rgba(102, 102, 102, 0.3333333333) 46.5% 47%, rgba(0, 0, 0, 0) 48% 50.5%, rgba(102, 102, 102, 0.3333333333) 51.5% 52%, rgba(0, 0, 0, 0) 53% 55.5%, rgba(102, 102, 102, 0.3333333333) 56.5% 57%, rgba(0, 0, 0, 0) 58% 60.5%, rgba(102, 102, 102, 0.3333333333) 61.5% 62%, rgba(0, 0, 0, 0) 63% 65.5%, rgba(102, 102, 102, 0.3333333333) 66.5% 67%, rgba(0, 0, 0, 0) 68% 70.5%, rgba(102, 102, 102, 0.3333333333) 71.5% 72%, rgba(0, 0, 0, 0) 73% 80.5%, rgba(102, 102, 102, 0.3333333333) 81.5% 82%, rgba(0, 0, 0, 0) 83% 90.5%, rgba(102, 102, 102, 0.3333333333) 91.5% 92%, rgba(0, 0, 0, 0) 93% 100%), #000;
   position: absolute;
   bottom: calc(40vh - 32vmin);
@@ -195,7 +195,7 @@ a:visited {
   background: radial-gradient(#ddd 0 15%, rgba(0, 0, 0, 0) 15% 55%, #ddd 55% 60%, rgba(0, 0, 0, 0) 0 60%), #e6f3be;
   display: grid;
   grid-template: repeat(5, 1fr)/repeat(5, 1fr);
-  grid-template-areas: ". . exit . ." ". . stop . ." ". prev play next ." ". . shuffle . ." ". vol vol vol .";
+  grid-template-areas: ". . exit . ." ". . stop . ." ". prev play next ." ". . playStyle . ." ". vol vol vol .";
 }
 .controllers > * {
   cursor: pointer;
@@ -232,14 +232,34 @@ a:visited {
   display: none;
 }
 
-.random {
-  grid-area: shuffle;
+.playing-type {
+  position: relative;
+  grid-area: playStyle;
+}
+.playing-type > * {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.playing-type > *[aria-selected=false] {
+  display: none;
 }
 
 .volume {
   grid-area: vol;
   display: flex;
   gap: 10px;
+}
+
+.volume-value {
+  font-family: oswald;
+  width: 2rem;
+}
+
+.control-btn:hover {
+  color: #958454;
 }
 
 .track-infos {
@@ -265,6 +285,59 @@ a:visited {
     transform: translateX(-50%);
   }
 }
+.link {
+  position: fixed;
+  z-index: 10;
+  left: calc(3vmin - 0.75rem);
+  bottom: calc(2.5vmin - 0.75rem);
+  font-size: 1.5rem;
+  font-family: arial, sans-serif;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.my-name {
+  position: relative;
+}
+
+.before, .after {
+  overflow: hidden;
+  width: 0px;
+  transition: width 0.5s;
+  transform-origin: right;
+}
+
+.before-text {
+  display: inline-block;
+  width: auto;
+  text-align: right;
+}
+
+.after-text {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 3rem;
+  transform-origin: top center;
+}
+
+.link:hover .before {
+  width: 2.5rem;
+}
+
+.link:hover .after {
+  width: 4rem;
+}
+
+.link:hover .spin {
+  display: inline-block;
+  transition: 0.5s transform 0.5s ease-in-out;
+  transform: rotate(360deg);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -277,13 +350,13 @@ header {
 }
 
 h1 {
-  font-family: Oswald;
+  font-family: "Changa One", cursive;
   font-size: 15vmin;
   width: 100vw;
   line-height: 15vmin;
   text-align: center;
   padding: 5vmin;
-  text-shadow: 1px 1px 0 rgba(17, 17, 17, 0.8666666667), 1px -1px 0 rgba(17, 17, 17, 0.8666666667), -1px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px -1px 0 rgba(17, 17, 17, 0.8666666667), 1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px -1px 0 rgba(17, 17, 17, 0.8666666667);
+  text-shadow: 1px 1px 0 black, 1px -1px 0 black, -1px 1px 0 black, -1px -1px 0 black, 1px 0px 0 black, 0px 1px 0 black, -1px 0px 0 black, 0px -1px 0 black;
 }
 
 body {
@@ -294,7 +367,7 @@ body {
 body {
   height: 100vh;
   width: 100vw;
-  background: radial-gradient(circle at center 60vh, rgba(255, 255, 255, 0.3333333333), rgba(255, 255, 255, 0)), url("../assets/img/eric-krull-fi3_lDi3qPE-unsplash.jpg");
+  background: radial-gradient(circle at center 60vh, rgba(255, 255, 255, 0.5333333333), rgba(255, 255, 255, 0)), url("../assets/img/jace-afsoon--iKrBACW3lQ-unsplash-min.png");
   background-size: cover;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
@@ -315,27 +388,24 @@ body {
   position: absolute;
   top: 50%;
   font-size: 2rem;
-  right: 7.5vw;
+  right: calc(50vw - 40vmin);
   cursor: pointer;
-  width: 3.5rem;
-  aspect-ratio: 1/0.9;
+  width: 3.5vw;
   display: grid;
   place-content: center;
-  border-radius: 50%;
-  background: rgba(238, 238, 238, 0.3333333333);
+  text-shadow: 1px 1px 0 rgba(17, 17, 17, 0.8666666667), 1px -1px 0 rgba(17, 17, 17, 0.8666666667), -1px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px -1px 0 rgba(17, 17, 17, 0.8666666667), 1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px -1px 0 rgba(17, 17, 17, 0.8666666667);
 }
 .arrow:first-child {
-  left: 7.5vw;
+  left: calc(50vw - 40vmin);
 }
 .arrow:hover {
-  color: rgb(86, 96, 176);
-  background: rgba(238, 238, 238, 0.8666666667);
+  color: #958454;
 }
 
 .disc {
   position: absolute;
   width: 52vmin;
-  aspect-ratio: 1;
+  height: 52vmin;
   transform-origin: bottom;
   transition: transform 1s ease-in-out;
   border-radius: 5px;

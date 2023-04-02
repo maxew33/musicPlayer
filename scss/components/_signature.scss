@@ -1,0 +1,52 @@
+.link {
+    position: fixed;
+    z-index: 10;
+    left: calc(3vmin - .75rem);
+    bottom: calc(2.5vmin - .75rem);
+    font-size: 1.5rem;
+    font-family: arial, sans-serif;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .my-name {
+    position: relative;
+  }
+  
+  .before, .after {
+    overflow: hidden;
+    width: 0px;
+    transition: width .5s;
+    transform-origin: right;
+  }
+  
+  .before-text {
+    display: inline-block;
+    width: auto;
+    text-align: right;
+  }
+  
+  .after-text {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 3rem;
+    transform-origin: top center;
+  }
+  
+  .link:hover .before {
+    width: 2.5rem;
+  }
+  
+  .link:hover .after {
+    width: 4rem;
+  }
+  
+  .link:hover .spin {
+    display: inline-block;
+    transition: .5s transform .5s ease-in-out;
+    transform: rotate(360deg);
+  }

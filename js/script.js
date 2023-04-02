@@ -19,7 +19,7 @@ let chgtdisc = 0,
     genreWrapper,
     pause = false,
     trackIndex = 0,
-    random = false,
+    playingType = "straight",
     albumOpened = false
 
 
@@ -154,26 +154,32 @@ function closeAlbum(){
     albumOpened = false
 }
 
-
 //Part III Music player
 const playBtn = document.querySelector('.play'),
     changeTrackBtn = Array.from(document.querySelectorAll('.change-track')),
     pauseBtn = document.querySelector('.pause'),
     stopBtn = document.querySelector('.stop'),
-    randomBtn = document.querySelector('.random'),
-    setVolumeBtn = Array.from(document.querySelectorAll('.set-volume'))
+    playingTypeBtns  =Array.from(document.querySelectorAll('.playing-type-btn')),
+    setVolumeBtn = Array.from(document.querySelectorAll('.set-volume')),
+    volumeValue = document.querySelector('.volume-value')
 
 playBtn.addEventListener('click', pauseMusik)
 pauseBtn.addEventListener('click', pauseMusik)
 stopBtn.addEventListener('click', stopMusik)
 
-randomBtn.addEventListener('click', () => random = !random)
+playingTypeBtns.forEach(btn => btn.addEventListener('click', e => {
+    playingType = e.target.dataset.next
+    btn.setAttribute('aria-selected', false)
+    document.querySelector(`[data-id=${e.target.dataset.next}]`).setAttribute('aria-selected', true)
+}))
 
 changeTrackBtn.forEach(btn => btn.addEventListener('click', e => changeTrack(+e.target.dataset.value)))
 
 setVolumeBtn.forEach(btn => btn.addEventListener('click', e => setVolume(+e.target.dataset.value)))
 
 function playMusik() {
+
+    volumeValue.innerHTML=Math.round(audio.volume*10)
 
     audio.src = `./assets/music/${genreSelected}/${mediaInfos[trackIndex].path}`
     audio.play()
@@ -208,10 +214,11 @@ function stopMusik() {
 
 function changeTrack(value) {
     console.log(value)
-    if (random) {
+    if (playingType === "random") {
         pickNextRndTrack()
     }
     else {
+        playingType === "repeat" &&(value = 0)
         trackIndex += value
         trackIndex < 0 && (trackIndex = mediaInfos.length - 1)
         trackIndex === mediaInfos.length && (trackIndex = 0)
@@ -234,4 +241,5 @@ function setVolume(value){
     currentVolume < 0 && (currentVolume = 0)
     currentVolume > 1 && (currentVolume = 1)
     audio.volume = currentVolume
+    volumeValue.innerHTML=Math.round(audio.volume*10)
 }

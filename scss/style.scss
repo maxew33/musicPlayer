@@ -1,8 +1,8 @@
 @use 'sass:math';
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa+One&family=Caveat:wght@600&family=Oswald&display=swap');
 
-@import './base/reset', './utils/variables', './components/player';
+@import './base/reset', './utils/variables', './utils/mixins', './components/player', './components/signature';
 
 * {
   margin: 0;
@@ -16,19 +16,13 @@ header{
 }
 
 h1 {
-  font-family: Oswald;
+  font-family: 'Changa One', cursive;
   font-size: 15vmin;
   width: 100vw;
   line-height: 15vmin;
   text-align: center;
-  padding: 5vmin;  text-shadow: 1px 1px 0 #111d, 
-  1px -1px 0 #111d, 
-  -1px 1px 0 #111d, 
-  -1px -1px 0 #111d, 
-  1px 0px 0 #111d, 
-  0px 1px 0 #111d, 
-  -1px 0px 0 #111d, 
-  0px -1px 0 #111d;
+  padding: 5vmin;  
+  @include text-shadow(black);
 }
 
 body {
@@ -39,7 +33,7 @@ body {
 body {
   height: 100vh;
   width: 100vw;
-  background: radial-gradient(circle at center 60vh, #fff5, #fff0),  url("../assets/img/eric-krull-fi3_lDi3qPE-unsplash.jpg");
+  background: radial-gradient(circle at center 60vh, #fff8, #fff0), url("../assets/img/jace-afsoon--iKrBACW3lQ-unsplash-min.png");
   background-size: cover;
   backdrop-filter: blur(5px);
 }
@@ -59,29 +53,26 @@ body {
   position: absolute;
   top: 50%;
   font-size: 2rem;
-  right: 7.5vw;
+  right: calc(50vw - 40vmin);;
   cursor: pointer;
-  width: 3.5rem;
-  aspect-ratio: 1/.9;
+  width: 3.5vw;
   display: grid;
   place-content: center;
-  border-radius: 50%;
-  background: #eeeeee55;
+  @include text-shadow;
 
   &:first-child {
-    left: 7.5vw;
+    left: calc(50vw - 40vmin);;
   }
 
   &:hover {
-    color: rgb(86, 96, 176);
-    background: #eeeeeedd;
+    color: $hover-col;
   }
 }
 
 .disc {
   position: absolute;
   width: 52vmin;
-  aspect-ratio: 1;
+  height: 52vmin;
   transform-origin: bottom;
   transition: transform 1s ease-in-out;
   border-radius: 5px;
@@ -205,14 +196,7 @@ body {
   font-size: 8vmin;
   font-family: caveat;
   color: #ccc;
-  text-shadow: 1px 1px 0 #111d, 
-  1px -1px 0 #111d, 
-  -1px 1px 0 #111d, 
-  -1px -1px 0 #111d, 
-  1px 0px 0 #111d, 
-  0px 1px 0 #111d, 
-  -1px 0px 0 #111d, 
-  0px -1px 0 #111d;
+  @include text-shadow;
 }
 
 @media screen and (max-width: 1080px) {

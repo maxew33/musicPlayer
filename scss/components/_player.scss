@@ -19,7 +19,7 @@
 .player {
     color: #111;
     width: 57.2vmin;
-    aspect-ratio: 1;
+    height: 57.2vmin;
     background:
         conic-gradient(from 15deg, #0000 0deg, #9995 10deg 45deg, #0000 55deg 185deg, #9995 195deg 230deg, #0000 240deg),
         radial-gradient(circle at center,
@@ -79,7 +79,7 @@
     ". . exit . ."
     ". . stop . ."
     ". prev play next ."
-    ". . shuffle . ."
+    ". . playStyle . ."
     ". vol vol vol .";
 
     >* {
@@ -119,14 +119,36 @@
     }
 }
 
-.random{
-    grid-area: shuffle;
+.playing-type{
+    position: relative;
+    grid-area: playStyle;
+    >*{
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        &[aria-selected="false"]{
+            display: none;
+        }
+    }
 }
 
 .volume{    
     grid-area: vol;
     display: flex;
     gap: 10px;
+}
+
+.volume-value{
+    font-family: oswald;
+    width: 2rem;
+}
+
+.control-btn{
+    &:hover{
+        color: $hover-col;
+    }
 }
 
 .track-infos{
@@ -139,7 +161,6 @@
 }
 
 @media screen and (max-width: 1080px){
-
 
     .player-section {
         z-index: 9;
