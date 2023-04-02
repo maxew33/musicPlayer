@@ -214,10 +214,6 @@ a:visited {
   grid-area: prev;
 }
 
-.change-track > * {
-  pointer-events: none;
-}
-
 .play-wrapper {
   grid-area: play;
   position: relative;
@@ -241,16 +237,16 @@ a:visited {
   display: flex;
   gap: 10px;
 }
-.volume .set-volume > * {
-  pointer-events: none;
-}
-
 .track-infos {
   font-size: 1.5rem;
   width: 57.2vmin;
   position: absolute;
   bottom: 3vmin;
   left: calc(50% - 45vmin);
+}
+
+.fas {
+  pointer-events: none;
 }
 
 * {

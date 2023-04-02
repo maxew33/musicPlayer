@@ -105,7 +105,7 @@
 }
 
 .change-track > *{
-    pointer-events: none;
+    // pointer-events: none;
 }
 
 .play-wrapper{
@@ -133,7 +133,7 @@
     gap: 10px;
     .set-volume{
         >*{
-            pointer-events: none;
+            // pointer-events: none;
         }
     }
 }
@@ -144,4 +144,8 @@
     position: absolute;
     bottom: 3vmin;
     left: calc(50% - 45vmin);
+}
+
+.fas{
+    pointer-events: none;
 }
