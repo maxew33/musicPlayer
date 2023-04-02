@@ -22,8 +22,16 @@ let chgtdisc = 0,
     playingType = "straight",
     albumOpened = false
 
-
 window.onload = animatediscs()
+
+console.log(`
+_                       
+|_)  _   _  o  _       _ 
+|_) (_) | | | (_) |_| |  
+          _|            
+     \\_________/
+     
+`)
 
 // first disc animation when the page is loaded
 function animatediscs() {
@@ -213,7 +221,6 @@ function stopMusik() {
 }
 
 function changeTrack(value) {
-    console.log(value)
     if (playingType === "random") {
         pickNextRndTrack()
     }
