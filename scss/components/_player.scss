@@ -16,56 +16,132 @@
     }
 }
 
-#player {
-    width: calc(100vw - 10vmin);
-    height: 66vmin;
-    background: #97acee;
+.player {
+    color: #111;
+    width: 57.2vmin;
+    aspect-ratio: 1;
+    background:
+        conic-gradient(from 15deg, #0000 0deg, #9995 10deg 45deg, #0000 55deg 185deg, #9995 195deg 230deg, #0000 240deg),
+        radial-gradient(circle at center,
+            #0000 0% 30.5%,
+            #6665 31.5% 32%,
+            #0000 33% 35.5%,
+            #6665 36.5% 37%,
+            #0000 38% 40.5%,
+            #6665 41.5% 42%,
+            #0000 43% 45.5%,
+            #6665 46.5% 47%,
+            #0000 48% 50.5%,
+            #6665 51.5% 52%,
+            #0000 53% 55.5%,
+            #6665 56.5% 57%,
+            #0000 58% 60.5%,
+            #6665 61.5% 62%,
+            #0000 63% 65.5%,
+            #6665 66.5% 67%,
+            #0000 68% 70.5%,
+            #6665 71.5% 72%,
+            #0000 73% 80.5%,
+            #6665 81.5% 82%,
+            #0000 83% 90.5%,
+            #6665 91.5% 92%,
+            #0000 93% 100%),
+        #000;
     position: absolute;
-    top: calc(60vh - 30vmin);
-    left: 5vmin;
-    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-    transition: .25s clip-path .25s ease-in-out;
-    will-change: clip-path;
-    display: flex;
+    bottom: calc(40vh - 32vmin);
+    left: calc(50vw - 28.6vmin);
+    transition: .25s transform .25s ease-in-out, 0s opacity .25s ease-in-out;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    transform: translateX(0vw);
+    opacity: 0;
+    pointer-events: none;
 
     &[aria-hidden="false"] {
-        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(33%);
     }
-}
-
-.empty-place {
-    height: 100%;
-    width: 57.2vmin;
-}
-
-.player-visuel{
-    width: calc(100vw - 67.2vmin);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .controllers {
-    width: 100%;
-    height: calc(8.8vmin + 5px);
-    background: blue;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    width: 22.5vmin;
+    height: 22.5vmin;
+    padding: 1vmin;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    background: radial-gradient(#ddd 0 15%, #0000 15% 55%, #ddd 55% 60%, #0000 0 60%),
+    #e6f3be;
+    display: grid;
+    grid-template: repeat(5,1fr) / repeat(5,1fr);
+    grid-template-areas:
+    ". . exit . ."
+    ". . stop . ."
+    ". prev play next ."
+    ". . shuffle . ."
+    ". vol vol vol .";
 
-    >*{
+    >* {
         cursor: pointer;
+        place-self: center;
     }
 }
 
-.exit {
+.stop{
+    grid-area: stop;
+}
+
+.exit{
+    grid-area: exit;
+}
+
+.next{
+    grid-area: next;
+}
+
+.prev{
+    grid-area: prev;
+}
+
+.change-track > *{
+    pointer-events: none;
+}
+
+.play-wrapper{
+    grid-area: play;
+    position: relative;
+    .play, .pause{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+    .play{
+        display: none;
+    }
+}
+
+.random{
+    grid-area: shuffle;
+}
+
+.volume{    
+    grid-area: vol;
+    display: flex;
+    gap: 10px;
+    .set-volume{
+        >*{
+            pointer-events: none;
+        }
+    }
+}
+
+.track-infos{
+    font-size: 1.5rem;
+    width: 57.2vmin;
     position: absolute;
-    top: 5vmin;
-    right: 5vmin;
-}
-
-.soundtrack{
-    &[aria-selected="true"]{
-        background: red;
-    }
+    bottom: 3vmin;
+    left: calc(50% - 45vmin);
 }

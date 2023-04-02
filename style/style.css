@@ -160,69 +160,103 @@ a:visited {
   background: rgba(34, 34, 34, 0.3333333333);
 }
 
-#player {
-  width: calc(100vw - 10vmin);
-  height: 66vmin;
-  background: #97acee;
-  position: absolute;
-  top: calc(60vh - 30vmin);
-  left: 5vmin;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  transition: 0.25s -webkit-clip-path 0.25s ease-in-out;
-  transition: 0.25s clip-path 0.25s ease-in-out;
-  transition: 0.25s clip-path 0.25s ease-in-out, 0.25s -webkit-clip-path 0.25s ease-in-out;
-  will-change: clip-path;
-  display: flex;
-}
-#player[aria-hidden=false] {
-  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-          clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-}
-
-.empty-place {
-  height: 100%;
+.player {
+  color: #111;
   width: 57.2vmin;
+  aspect-ratio: 1;
+  background: conic-gradient(from 15deg, rgba(0, 0, 0, 0) 0deg, rgba(153, 153, 153, 0.3333333333) 10deg 45deg, rgba(0, 0, 0, 0) 55deg 185deg, rgba(153, 153, 153, 0.3333333333) 195deg 230deg, rgba(0, 0, 0, 0) 240deg), radial-gradient(circle at center, rgba(0, 0, 0, 0) 0% 30.5%, rgba(102, 102, 102, 0.3333333333) 31.5% 32%, rgba(0, 0, 0, 0) 33% 35.5%, rgba(102, 102, 102, 0.3333333333) 36.5% 37%, rgba(0, 0, 0, 0) 38% 40.5%, rgba(102, 102, 102, 0.3333333333) 41.5% 42%, rgba(0, 0, 0, 0) 43% 45.5%, rgba(102, 102, 102, 0.3333333333) 46.5% 47%, rgba(0, 0, 0, 0) 48% 50.5%, rgba(102, 102, 102, 0.3333333333) 51.5% 52%, rgba(0, 0, 0, 0) 53% 55.5%, rgba(102, 102, 102, 0.3333333333) 56.5% 57%, rgba(0, 0, 0, 0) 58% 60.5%, rgba(102, 102, 102, 0.3333333333) 61.5% 62%, rgba(0, 0, 0, 0) 63% 65.5%, rgba(102, 102, 102, 0.3333333333) 66.5% 67%, rgba(0, 0, 0, 0) 68% 70.5%, rgba(102, 102, 102, 0.3333333333) 71.5% 72%, rgba(0, 0, 0, 0) 73% 80.5%, rgba(102, 102, 102, 0.3333333333) 81.5% 82%, rgba(0, 0, 0, 0) 83% 90.5%, rgba(102, 102, 102, 0.3333333333) 91.5% 92%, rgba(0, 0, 0, 0) 93% 100%), #000;
+  position: absolute;
+  bottom: calc(40vh - 32vmin);
+  left: calc(50vw - 28.6vmin);
+  transition: 0.25s transform 0.25s ease-in-out, 0s opacity 0.25s ease-in-out;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  transform: translateX(0vw);
+  opacity: 0;
+  pointer-events: none;
 }
-
-.player-visuel {
-  width: calc(100vw - 67.2vmin);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.player[aria-hidden=false] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(33%);
 }
 
 .controllers {
-  width: 100%;
-  height: calc(8.8vmin + 5px);
-  background: blue;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  width: 22.5vmin;
+  height: 22.5vmin;
+  padding: 1vmin;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  background: radial-gradient(#ddd 0 15%, rgba(0, 0, 0, 0) 15% 55%, #ddd 55% 60%, rgba(0, 0, 0, 0) 0 60%), #e6f3be;
+  display: grid;
+  grid-template: repeat(5, 1fr)/repeat(5, 1fr);
+  grid-template-areas: ". . exit . ." ". . stop . ." ". prev play next ." ". . shuffle . ." ". vol vol vol .";
 }
 .controllers > * {
   cursor: pointer;
+  place-self: center;
+}
+
+.stop {
+  grid-area: stop;
 }
 
 .exit {
-  position: absolute;
-  top: 5vmin;
-  right: 5vmin;
+  grid-area: exit;
 }
 
-.soundtrack[aria-selected=true] {
-  background: red;
+.next {
+  grid-area: next;
+}
+
+.prev {
+  grid-area: prev;
+}
+
+.change-track > * {
+  pointer-events: none;
+}
+
+.play-wrapper {
+  grid-area: play;
+  position: relative;
+}
+.play-wrapper .play, .play-wrapper .pause {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.play-wrapper .play {
+  display: none;
+}
+
+.random {
+  grid-area: shuffle;
+}
+
+.volume {
+  grid-area: vol;
+  display: flex;
+  gap: 10px;
+}
+.volume .set-volume > * {
+  pointer-events: none;
+}
+
+.track-infos {
+  font-size: 1.5rem;
+  width: 57.2vmin;
+  position: absolute;
+  bottom: 3vmin;
+  left: calc(50% - 45vmin);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-  color: #222;
 }
 
 header {
@@ -282,27 +316,25 @@ body {
   background: rgba(238, 238, 238, 0.8666666667);
 }
 
-.card {
+.disc {
   position: absolute;
-  height: 60vmin;
   width: 52vmin;
+  aspect-ratio: 1;
   transform-origin: bottom;
   transition: transform 1s ease-in-out;
-  border-radius: 15px;
-  border: 5px solid rgba(0, 0, 0, 0.6);
-  background: #eee;
+  border-radius: 5px;
   cursor: pointer;
   will-change: transform;
 }
-.card > * {
+.disc > * {
   pointer-events: none;
 }
-.card:not([data-pos="8"]) {
+.disc:not([data-pos="8"]) {
   cursor: default;
   pointer-events: none;
 }
-.card[aria-selected=true] {
-  transform: translate(calc(33.6vmin - 50vw), 6vmin) scale(1.1);
+.disc[aria-selected=true] {
+  transform: translate(-33%, 6vmin) scale(1.1);
   transition: transform 0.25s ease-in-out;
 }
 
@@ -346,15 +378,15 @@ body {
   transform: rotate(0deg);
 }
 
-.card-from-left {
+.disc-from-left {
   transform: translateX(calc(-50% - 50vw));
 }
 
-.card-from-right {
+.disc-from-right {
   transform: translateX(calc(50% + 50vw));
 }
 
-/* anim for moving cards from front to back */
+/* anim for moving discs from front to back */
 [data-pos="9"] {
   z-index: 9;
   animation: linear 0.5s forwards running to-the-back;
@@ -383,7 +415,7 @@ body {
     z-index: 1;
   }
 }
-/* anim for moving cards from back to front */
+/* anim for moving discs from back to front */
 [data-pos="0"] {
   z-index: 0;
   animation: linear 0.5s forwards running to-the-front;
@@ -414,14 +446,19 @@ body {
 }
 .illustration {
   width: 100%;
-  height: auto;
+  aspect-ratio: 1;
   transition: transform 0.25s ease-in-out;
+  border-radius: 2px;
+  border: 1px solid rgba(68, 68, 68, 0.3333333333);
 }
 
 .name {
+  position: absolute;
+  bottom: 2.5%;
+  width: 100%;
   text-align: center;
-  font-size: 5vmin;
+  font-size: 8vmin;
   font-family: caveat;
-}
-
-/* ====== PLAYER ====== *//*# sourceMappingURL=style.css.map */
+  color: #ccc;
+  text-shadow: 1px 1px 0 rgba(17, 17, 17, 0.8666666667), 1px -1px 0 rgba(17, 17, 17, 0.8666666667), -1px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px -1px 0 rgba(17, 17, 17, 0.8666666667), 1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px 1px 0 rgba(17, 17, 17, 0.8666666667), -1px 0px 0 rgba(17, 17, 17, 0.8666666667), 0px -1px 0 rgba(17, 17, 17, 0.8666666667);
+}/*# sourceMappingURL=style.css.map */

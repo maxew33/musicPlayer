@@ -8,6 +8,7 @@
   <title>Miouzic</title>
   <link rel="stylesheet" href="./style/style.css">
   <script src="./js/script.js" type="module" defer></script>
+  <script src="https://kit.fontawesome.com/6d9f33d815.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -25,90 +26,76 @@
         ⟼
       </div>
 
-      <div class="card card-from-left" data-genre="jazz" data-pos="1" aria-selected="false">
-        <img src="https://picsum.photos/400" alt="Lorem Picsum" class="illustration">
+      <div class="disc disc-from-left" data-genre="jazz" data-pos="1" aria-selected="false">
+        <img src="/assets/img/jazz.png" alt="Jazz music" class="illustration">
         <p class="name">
-          <a href="https://picsum.photos">
-            Jazz
-          </a>
+          Jazz
         </p>
       </div>
-      <div class="card card-from-right" data-genre="pop" data-pos="2" aria-selected="false">
-        <img src="https://via.placeholder.com/400" alt="place holder" class="illustration">
+      <div class="disc disc-from-right" data-genre="pop" data-pos="2" aria-selected="false">
+        <img src="/assets/img/pop.png" alt="Pop music" class="illustration">
         <p class="name">
-          <a href="https://via.placeholder.com">
-            pop
-          </a>
+          Pop
         </p>
       </div>
-      <div class="card card-from-left" data-genre="rnb" data-pos="3" aria-selected="false">
-        <img src="https://www.placecage.com/400/400" alt="place Cage" class="illustration">
+      <div class="disc disc-from-left" data-genre="rnb" data-pos="3" aria-selected="false">
+        <img src="/assets/img/rnb.png" alt="r'n'b music" class="illustration">
         <p class="name">
-          <a href="https://www.placecage.com">
-            R'n'B
-          </a>
+          R'n'B
         </p>
       </div>
-      <div class="card card-from-right" data-genre="reggae" data-pos="4" aria-selected="false">
-        <img src="https://placekitten.com/400/400" alt="place Kitten" class="illustration">
+      <div class="disc disc-from-right" data-genre="reggae" data-pos="4" aria-selected="false">
+        <img src="/assets/img/reggae.png" alt="reggae music" class="illustration">
         <p class="name">
-          <a href="https://placekitten.com">
-            Reggae
-          </a>
+          Reggae
         </p>
       </div>
-      <div class="card card-from-left" data-genre="rock" data-pos="5" aria-selected="false">
-        <img src="https://baconmockup.com/400/400" alt="baconmockup" class="illustration">
+      <div class="disc disc-from-left" data-genre="rock" data-pos="5" aria-selected="false">
+        <img src="/assets/img/rock.png" alt="rock" class="illustration">
         <p class="name">
-          <a href="https://baconmockup.com">
-            Rock
-          </a>
+          Rock
         </p>
       </div>
-      <div class="card card-from-right" data-genre="country" data-pos="6" aria-selected="false">
-        <img src="https://placebeard.it/400x400" alt="place beard" class="illustration">
+      <div class="disc disc-from-right" data-genre="country" data-pos="6" aria-selected="false">
+        <img src="/assets/img/country.png" alt="country" class="illustration">
         <p class="name">
-          <a href="https://placebeard.it">
-            Country
-          </a>
+          Country
+      </div>
+      <div class="disc disc-from-left" data-genre="classic" data-pos="7" aria-selected="false">
+        <img src="/assets/img/classic.png" alt="classic" class="illustration">
+        <p class="name">
+          Classic
         </p>
       </div>
-      <div class="card card-from-left" data-genre="classic" data-pos="7" aria-selected="false">
-        <img src="http://placeimg.com/400/400/arch/grayscale" alt="place img" class="illustration">
+      <div class="disc disc-from-right" data-genre="punk" data-pos="8" aria-selected="false">
+        <img src="/assets/img/punk.png" alt="punk" class="illustration">
         <p class="name">
-          <a href="http://placeimg.com">
-            Classic
-          </a>
-        </p>
-      </div>
-      <div class="card card-from-right" data-genre="punk" data-pos="8" aria-selected="false">
-        <img src="https://www.fillmurray.com/400/400" alt="fill Murray" class="illustration">
-        <p class="name">
-          <a href="https://www.fillmurray.com">
-            Punk
-          </a>
+          Punk
         </p>
       </div>
     </div>
   </section>
-  <section class="player-section" aria-hidden="true">
+  <section class="player-section player-elt" aria-hidden="true">
 
-    <div id="player" aria-hidden="true">
-      <div class="empty-place"></div>
-      <div class="player-visuel">
-        <div class="playlist"></div>
-        <div class="controllers">
-          <div class="play">▶</div>
-          <div class="pause">❙❙</div>
-          <div class="next change-track" data-value="1">▶❙</div>
-          <div class="prev change-track" data-value="-1">❙◀</div>
-          <div class="stop">■</div>
-          <div class="volume"></div>
-          <div class="random">random</div>
+    <div class="player player-elt" aria-hidden="true">
+      <div class="controllers">
+        <div class="exit"><i class="fas fa-eject"></i></div>
+        <div class="play-wrapper">
+          <div class="play"><i class="fas fa-play"></i></div>
+          <div class="pause"><i class="fas fa-pause"></i> </div>
+        </div>
+        <div class="next change-track" data-value="1"><i class="fas fa-step-forward"></i></div>
+        <div class="prev change-track" data-value="-1"><i class="fas fa-step-backward"></i></div>
+        <div class="stop"><i class="fas fa-stop"></i></div>
+        <div class="random"><i class="fas fa-shuffle"></i></div>
+        <div class="volume">
+          <div class="set-volume" data-value="-1"><i class="fas fa-volume-low"></i></div>
+          
+          <div class="set-volume" data-value="1"><i class="fas fa-volume-high"></i></div>
         </div>
       </div>
-      <button class="exit">X</button>
     </div>
+    <div class="track-infos"></div>
   </section>
 </body>
 

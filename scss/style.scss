@@ -11,11 +11,6 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-  color: #222;
-}
-
 header{
   position: absolute;
   z-index: 10;
@@ -75,15 +70,13 @@ body {
   }
 }
 
-.card {
+.disc {
   position: absolute;
-  height: 60vmin;
   width: 52vmin;
+  aspect-ratio: 1;
   transform-origin: bottom;
   transition: transform 1s ease-in-out;
-  border-radius: 15px;
-  border: 5px solid #0009;
-  background: #eee;
+  border-radius: 5px;
   cursor: pointer;
   will-change: transform;
 
@@ -97,29 +90,29 @@ body {
   }
 
   &[aria-selected='true']{
-    transform: translate(calc(33.6vmin - 50vw), 6vmin) scale(1.1);
+    transform: translate(-33%, 6vmin) scale(1.1);
     transition: transform .25s ease-in-out;
   }
 }
 
-@for $i from 1 through $cards-qty {
+@for $i from 1 through $discs-qty {
   [data-pos='#{$i}'] {
     z-index: $i;
     transform: rotate(math.sin(math.div(math.$pi * $i, 4)) * 10deg);
   }
 }
 
-.card-from-left {
+.disc-from-left {
   transform: translateX(calc(-50% - 50vw));
 }
 
-.card-from-right {
+.disc-from-right {
   transform: translateX(calc(50% + 50vw));
 }
 
-/* anim for moving cards from front to back */
+/* anim for moving discs from front to back */
 
-[data-pos='#{($cards-qty + 1)}'] {
+[data-pos='#{($discs-qty + 1)}'] {
   z-index: 9;
   animation: linear .5s forwards running to-the-back;
 }
@@ -153,7 +146,7 @@ body {
   }
 }
 
-/* anim for moving cards from back to front */
+/* anim for moving discs from back to front */
 
 [data-pos='0'] {
   z-index: 0;
@@ -190,16 +183,26 @@ body {
 
 .illustration {
   width: 100%;
-  height: auto;
+  aspect-ratio: 1;
   transition: transform .25s ease-in-out;
+  border-radius: 2px;
+  border: 1px solid #4445;
 }
 
 .name {
+  position: absolute;
+  bottom: 2.5%;
+  width: 100%;
   text-align: center;
-  font-size: 5vmin;
+  font-size: 8vmin;
   font-family: caveat;
+  color: #ccc;
+  text-shadow: 1px 1px 0 #111d, 
+  1px -1px 0 #111d, 
+  -1px 1px 0 #111d, 
+  -1px -1px 0 #111d, 
+  1px 0px 0 #111d, 
+  0px 1px 0 #111d, 
+  -1px 0px 0 #111d, 
+  0px -1px 0 #111d;
 }
-
-
-/* ====== PLAYER ====== */
-
