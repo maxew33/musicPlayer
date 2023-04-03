@@ -277,6 +277,7 @@ a:visited {
   }
   .player {
     width: 90vmin;
+    height: 90vmin;
     left: 50%;
     transform: translateX(-50%);
     bottom: calc(50vh - 45vmin);
